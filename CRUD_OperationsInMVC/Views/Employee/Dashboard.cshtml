@@ -1,0 +1,50 @@
+@model IEnumerable<CRUD_OperationsInMVC.Models.EmployeeDataModel>
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<div class="jumbotron">
+    <h1>Welcome to the Dashboard</h1>
+    <p class="lead">Here is a summary of your application data.</p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="card text-white bg-primary mb-3">
+            <div class="card-header">Employees</div>
+            <div class="card-body">
+                <h5 class="card-title">Total Employees</h5>
+                <p class="card-text" style="font-size: 2rem;">@Model.TotalEmployees</p>
+                @Html.ActionLink("Manage Employees", "List", "Employee", null, new { @class = "btn btn-light" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-success mb-3">
+            <div class="card-header">Users</div>
+            <div class="card-body">
+                <h5 class="card-title">User Management</h5>
+                <p class="card-text">Manage user accounts and roles.</p>
+                @Html.ActionLink("Manage Users", "Index", "Users", null, new { @class = "btn btn-light" })
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card text-white bg-info mb-3">
+            <div class="card-header">Settings</div>
+            <div class="card-body">
+                <h5 class="card-title">Application Settings</h5>
+                <p class="card-text">Configure application-wide settings.</p>
+                <a href="#" class="btn btn-light">Go to Settings</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <style>
+        .card-text {
+            font-weight: bold;
+        }
+    </style>
+}

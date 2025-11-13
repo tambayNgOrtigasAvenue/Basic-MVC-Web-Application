@@ -1,0 +1,62 @@
+@model CRUD_OperationsInMVC.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+
+        @* We use a Bootstrap "card" for a nice, clean look *@
+        <div class="card shadow-sm border-0 rounded-lg mt-5">
+      <div class="card-header bg-primary text-white text-center">
+           <h3 class="font-weight-light my-4">Please, Login</h3>
+     </div>
+            <div class="card-body">
+
+                @* This HTML Helper creates the <form> tag.
+ It will send the form data to the "Login" action on "Accounts" controller. *@
+       @using (Html.BeginForm("Login", "Accounts", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        {
+          @* This adds anti-forgery protection *@
+   @Html.AntiForgeryToken()
+
+      @* This displays any general error messages (e.g., "Invalid username or password") *@
+             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+               <div class="form-group mb-3">
+           @Html.LabelFor(m => m.Username, new { @class = "form-label" })
+      @* This creates the <input> for Username, with Bootstrap styling *@
+               @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+       @Html.ValidationMessageFor(m => m.Username, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="form-group mb-3">
+            @Html.LabelFor(m => m.PasswordHash, new { @class = "form-label" })
+            @* This creates the <input type="password"> for Password *@
+            @Html.PasswordFor(m => m.PasswordHash, new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.PasswordHash, "", new { @class = "text-danger" })
+        </div>
+
+   <div class="d-grid mt-4">
+               <input type="submit" value="Log in" class="btn btn-primary btn-block" />
+             </div>
+      }
+  </div>
+   <div class="card-footer text-center py-3">
+<div class="small">
+  @* This links to a (future) Register page *@
+   @Html.ActionLink("Need an account? Register!", "Register")
+    </div>
+            </div>
+  </div>
+
+    </div>
+</div>
+
+@* This section is important to enable client-side form validation
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+*@

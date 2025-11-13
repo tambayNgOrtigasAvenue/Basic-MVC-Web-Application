@@ -1,0 +1,16 @@
+# Visual Studio
+.vs/
+*.suo
+*.user
+
+# Build outputs
+[Bb]in/
+[Oo]bj/
+
+# NuGet Packages
+# This is the most important one from your screenshot!
+packages/
+
+# Other
+*.nupkg
+*.bak
